@@ -1,0 +1,124 @@
+:root{
+  --contrast-color: #fff;
+}
+
+ *,*:before, *:after {
+  margin: 0;
+  padding: 0;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  width: 100vw;
+  min-height: 100%;
+  font-size: 16px;
+  font-family: "Quicksand", sans-serif;
+  color: var(--contrast-color);
+  margin: 0;
+}
+
+
+h1 {
+  height: calc(100vh * 1/6); */
+  line-height:calc(100vh * 1/6);
+  font-size: 2rem;
+  font-weight: 300;
+  padding: 10%;
+  text-align: center;
+}
+
+button {
+display: inline-block;
+font-family: inherit;
+  border: none;
+  background: var(--contrast-color);
+  box-shadow: 0 0 0 2px #e78267;
+  color: #000;
+  width: 5em;
+  height: 5em;
+  font-size: 1.2em;
+  border-radius: 50%;
+  margin: 20%  10% ;
+  outline: none;
+  cursor:pointer;
+  transition: background 250ms ease-in-out,
+                transform 150ms ease;
+}
+
+button:hover{
+    box-shadow: 0 0 0 4px #eaddda;
+    background-color: rgba(255,86,68,1);
+    color: #fff;
+}
+
+button:active {
+    transform: translateY(-1.5px);
+    box-shadow: 0 0 2px 4px #eaddda;
+
+}
+
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(255,86,68);
+  background: linear-gradient(75deg, rgba(255,86,68,1) 0%, rgba(245,52,71,1) 35%);
+
+}
+
+
+/* Sets the containers height and width*/
+#base-timer {
+   margin: auto;
+    height: 300px;
+    width: 300px;
+    display: grid;
+    grid-template-columns: 3;
+    grid-template-rows: 1;
+
+}
+
+.base-timer__label {
+    /* height should match the parent container */
+    width: 300px;
+    height: 300px;
+    grid-column: 1 / 2;
+
+    /* Keep the label aligned to the top */
+
+/* Create a flexibel box that centers content vertically and horizontally */
+display: flex;
+align-items: center;
+justify-content: center;
+
+/* Sort of an arbitrary number; adjust to your liking */
+font-size: 1.5em;
+}
+
+/*Removes SVG styling that would hide the time label */
+.base-timer__circle {
+    fill: none;
+    stroke:none;
+    grid-column: 1 / 2;
+}
+
+/*The SVG path that displays the timer's progress */
+.base-timer__path-elapsed {
+    stroke-width: 1px;
+    stroke: #fff;
+}
+
+.buttons {
+    width: 100%;
+    text-align: center;
+}

@@ -1,0 +1,37 @@
+ <!DOCTYPE html>
+ <html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <title>TITLE</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+
+     <!--[if lt IE 9]>
+       <script src = "http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+     <![endif]-->
+ </head>
+
+ <body>
+ <div class="container">
+     <h1>Make it with Pomodoro</h1>
+     <div id="base-timer">
+         <svg class="base-timer__svg" viewBox = "0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g class="base-timer__circle">
+                <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45" />
+            </g>
+        </svg>
+        <span id="base-timer-label" class="base-timer-label">
+        </span>
+    </div>
+    <div class="buttons">
+        <button type="button" id="stop">Stop</button>
+        <button type="button" id="start">Start</button>
+    </div>
+ </div>
+
+<script src="script.js"></script>
+ </body>
+
+ </html>
