@@ -1,5 +1,32 @@
+//timer circle is based on code by Mateusz Rybczonec: https://codepen.io/geoffgraham/pen/yLywVbW?editors=1010
 
-function formatTimeLeft(time) {
+let COLOR_CODES = {
+    info: {
+        color: "green"
+    }
+};
+const FULL_DASH_ARRAY = 283;
+const TIME_LIMIT = 1200;
+let timePassed = 0;
+let timeLeft = TIME_LIMIT;
+let timeInterval = null;
+let remainingPathColor = COLOR_CODES.info.color;
+
+
+const span = document.getElementById("base-timer-label");
+ span.innerHTML = `${formatTime(timeLeft)}`;
+
+ const path = document.getElementById("base-timer-path-remaining");
+ path.classList.add = "base-timer__path-remaining ${remainingPathColor}";
+
+const startButton = document.getElementById("start");
+startButton.addEventListener("click", startTimer);
+
+const stopButton = document.getElementById("stop");
+stopButton.addEventListener("click", stopTimer);
+
+
+function formatTime(time) {
     //the largest round integer less than or equal to the result of time divided by 60
     const minutes = Math.floor(time/60);
 
@@ -16,53 +43,36 @@ function formatTimeLeft(time) {
     return `${minutes}:${seconds}`;
 }
 
-//Starting Value:
-const TIME_LIMIT = 1200;
 
-// Initially, no time has passed, but this will count up
-// and subtract from the TIME_LIMIT
-let timePassed = 0;
-let timeLeft = TIME_LIMIT;
+function startTimer() {
+    timerInterval = setInterval(() =>{
+        //amount of time passed increments by one
+        timePassed = timePassed += 1;
+        timeLeft = TIME_LIMIT - timePassed;
 
-let timeInterval = null;
-
-const span = document.getElementById("base-timer-label");
-//const span = container.getElementById("base-timer-label");
- span.innerHTML = `${formatTimeLeft(timeLeft)}`;
-
+        //update time-left label
+        document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft);
+        setCircleDasharray();
+    }, 1000);
+}
 
 
+function stopTimer(){
+    location.reload();
+}
 
 
-// const startButton = document.getElementById("start");
-// startButton.addEventHandler("click", );
+// What fraction of initial time is left
+function calculateTimeFraction(){
+    return timeLeft/TIME_LIMIT;
+}
 
 
-
-
-
-//reset startButton
-//stop button (mainly does the same thing)
-
-// function startPomodoro(e){
-//   //count down 25 min
-//
-//   //show countdown in display as timeout
-//   //show countdown as emptying circle
-//   //show "5 min break" on display
-//   //count down 5 minutes
-//   //blink 15 secs if 5 minutes are over (noise?)
-//   //restart counter
-//
-// }
-//
-// function countDown(minutes){}
-//
-// function blink15(){}
-//
-// function startOver(){}
-//
-// function takeBreak(){}
-//
-//
-// function showCircle(){}
+// Update  dasharray value as time passes, starting with 283
+function setCircleDasharray(){
+    const circleDasharray = `${(
+        calculateTimeFraction() * FULL_DASH_ARRAY).toFixed(0)}  283`;
+        document
+        .getElementById("base-timer-path-remaining")
+        .setAttribute("stroke-dasharray", circleDasharray);
+}

@@ -9,7 +9,8 @@
        -moz-box-sizing: border-box;
             box-sizing: border-box;
 }
-
+/*//////////////////////////////////////////////////////////////////////////////*/
+/* General Styles*/
 html {
   height: 100%;
 }
@@ -33,37 +34,6 @@ h1 {
   text-align: center;
 }
 
-button {
-display: inline-block;
-font-family: inherit;
-  border: none;
-  background: var(--contrast-color);
-  box-shadow: 0 0 0 2px #e78267;
-  color: #000;
-  width: 5em;
-  height: 5em;
-  font-size: 1.2em;
-  border-radius: 50%;
-  margin: 20%  10% ;
-  outline: none;
-  cursor:pointer;
-  transition: background 250ms ease-in-out,
-                transform 150ms ease;
-}
-
-button:hover{
-    box-shadow: 0 0 0 4px #eaddda;
-    background-color: rgba(255,86,68,1);
-    color: #fff;
-}
-
-button:active {
-    transform: translateY(-1.5px);
-    box-shadow: 0 0 2px 4px #eaddda;
-
-}
-
-
 .container {
   width: 100vw;
   height: 100vh;
@@ -76,37 +46,75 @@ button:active {
 
 }
 
+/*//////////////////////////////////////////////////////////////////////////////*/
+/* Buttons*/
+
+.buttons {
+    padding: 15% 10%;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+button {
+display: inline-block;
+font-family: inherit;
+  border: 1px solid #fff;
+  background: rgba(255,86,68,1);
+  box-shadow: 0 0 0 2px #e78267;
+  color: #fff;
+  width: 4.5em;
+  height: 4.5em;
+  font-size: 1.2em;
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  cursor:pointer;
+
+  /* transition: background 250ms ease-in-out,
+                transform 150ms ease; */
+}
+
+button:hover{
+    box-shadow: 0 0 0 4px #eaddda;
+    background-color: var(--contrast-color);
+    color: #000;
+}
+
+button:active {
+    transform: translateY(-1.5px);
+    box-shadow: 0 0 2px 4px #eaddda;
+}
+
+
 
 /* Sets the containers height and width*/
 #base-timer {
    margin: auto;
-    height: 300px;
-    width: 300px;
+    height: 250px;
+    width: 250px;
     display: grid;
     grid-template-columns: 3;
     grid-template-rows: 1;
 
 }
 
-.base-timer__label {
+#base-timer-label {
     /* height should match the parent container */
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     grid-column: 1 / 2;
-
-    /* Keep the label aligned to the top */
-
-/* Create a flexibel box that centers content vertically and horizontally */
-display: flex;
-align-items: center;
-justify-content: center;
-
-/* Sort of an arbitrary number; adjust to your liking */
-font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
 }
 
 /*Removes SVG styling that would hide the time label */
-.base-timer__circle {
+#base-timer__circle {
     fill: none;
     stroke:none;
     grid-column: 1 / 2;
@@ -115,10 +123,56 @@ font-size: 1.5em;
 /*The SVG path that displays the timer's progress */
 .base-timer__path-elapsed {
     stroke-width: 1px;
-    stroke: #fff;
+    stroke: none;
 }
 
-.buttons {
-    width: 100%;
-    text-align: center;
+#base-timer-path-remaining {
+    stroke-width: 1px;
+    stroke-linecap: round;
+    transform: rotate(90deg);
+    transform-origin: center;
+    transition: 1s linear all;
+    stroke: white;
+
+}
+.base-timer__svg {
+    /* Flips the svg and makes the animation to move left-to-right */
+
+    transform: scaleX(-1);
+}
+
+/*//////////////////////////////////////////////////////////////////////////////*/
+/* Media Query for Desktop*/
+
+@media only screen and (min-width: 500px) {
+    body{
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        text-align: center;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .container {
+        margin: 0 auto;
+        width: 320px;
+        height: 568px;
+        border-radius: 15px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+
+    }
+#base-timer, #base-timer-label {
+    width: 200px;
+    height: 200px;
+    }
+
 }
